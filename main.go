@@ -5,6 +5,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"sync"
@@ -100,7 +101,7 @@ func (c *ctx) walkDir(p string) {
 		if !d.IsDir() {
 			for _, re := range c.regexps {
 				if re.MatchString(d.Name()) {
-					c.addFound(p + "/" + path)
+					c.addFound(filepath.Join(p, path))
 					break
 				}
 			}
