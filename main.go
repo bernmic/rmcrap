@@ -32,7 +32,7 @@ func main() {
 		s := string(b)
 		c.pattern = strings.Split(strings.ReplaceAll(s, "\r\n", "\n"), "\n")
 	} else {
-		c.pattern = []string{".DS_Store", "Thumbs.db", `^.*.CR2.\$.jpg$`, `^.*.tmp$`}
+		c.pattern = []string{".DS_Store", "Thumbs.db", `^.*.CR2_embedded.jpg$`, `^.*.tmp$`}
 	}
 	c.regexps = make([]*regexp.Regexp, 0)
 	for _, p := range c.pattern {
