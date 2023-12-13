@@ -45,7 +45,15 @@ func main() {
 
 	fmt.Println("\nResult")
 	for _, p := range c.found {
-		fmt.Println(p)
+		if c.dryRun {
+			fmt.Println(p)
+		} else {
+			err = os.Remove(p)
+			if err != nil {
+				fmt.Printf("error removing file %s: %v\n", p, err)
+			}
+		}
+
 	}
 }
 
