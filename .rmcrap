@@ -1,0 +1,4 @@
+.DS_Store
+Thumbs.db
+^.*.CR2_embedded.jpg$
+^.*.tmp$

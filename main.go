@@ -31,8 +31,9 @@ func main() {
 	if err == nil {
 		s := string(b)
 		c.pattern = strings.Split(strings.ReplaceAll(s, "\r\n", "\n"), "\n")
+		c.pattern = removeEmptyStrings(c.pattern)
 	} else {
-		c.pattern = []string{".DS_Store", "Thumbs.db", `^.*.CR2_embedded.jpg$`, `^.*.tmp$`}
+		c.pattern = []string{".DS_Store", "Thumbs.db", `^.*.CR2.\$.jpg$`, `^.*.tmp$`}
 	}
 	c.regexps = make([]*regexp.Regexp, 0)
 	for _, p := range c.pattern {
@@ -116,4 +117,15 @@ func (c *ctx) walkDir(p string) {
 		}
 		return nil
 	})
+}
+
+func removeEmptyStrings(in []string) []string {
+	var r []string
+	for _, s := range in {
+		if s != "" {
+			r = append(r, s)
+		}
+	}
+	return r
+
 }
